@@ -14,4 +14,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TutoringPlatform.Application\TutoringPlatform.Application.csproj" />
+    <ProjectReference Include="..\TutoringPlatform.Infrastructure\TutoringPlatform.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

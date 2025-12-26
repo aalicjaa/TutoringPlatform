@@ -1,3 +1,6 @@
 <Solution>
   <Project Path="backend/TutoringPlatform.Api/TutoringPlatform.Api.csproj" Id="6998c8da-2207-4561-9a4e-715c9d1a618c" />
+  <Project Path="backend/TutoringPlatform.Application/TutoringPlatform.Application.csproj" Id="d87ffe30-9c22-4f79-a3f5-87a7acb53e70" />
+  <Project Path="backend/TutoringPlatform.Domain/TutoringPlatform.Domain.csproj" Id="d5352687-601f-427e-9ff9-fd523e559d82" />
+  <Project Path="backend/TutoringPlatform.Infrastructure/TutoringPlatform.Infrastructure.csproj" Id="d98daca4-7628-430e-bb4f-60c102a388ee" />
 </Solution>
