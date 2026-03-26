@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringPlatform.Mobile.Pages.LoginPage"
+             Title="Logowanie">
+
+    <ScrollView Padding="16">
+        <VerticalStackLayout Spacing="14">
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Logowanie"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource TextPrimary}" />
+                <Label Text="Zaloguj się, aby przejść do ofert i rezerwacji"
+                       FontSize="13"
+                       TextColor="{DynamicResource TextSecondary}" />
+            </VerticalStackLayout>
+
+            <Border Stroke="{DynamicResource Divider}"
+                    StrokeThickness="1"
+                    BackgroundColor="{DynamicResource Surface}"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="16">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Zaloguj się"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource TextPrimary}" />
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Email"
+                               FontSize="12"
+                               TextColor="{DynamicResource TextSecondary}" />
+                        <Entry Placeholder="np. anna@email.com"
+                               Keyboard="Email"
+                               Text="{Binding Email}"
+                               Style="{DynamicResource FormEntry}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Hasło"
+                               FontSize="12"
+                               TextColor="{DynamicResource TextSecondary}" />
+                        <Entry Placeholder="Twoje hasło"
+                               IsPassword="True"
+                               Text="{Binding Password}"
+                               Style="{DynamicResource FormEntry}" />
+                    </VerticalStackLayout>
+
+                    <Button Text="Zaloguj"
+                            Command="{Binding LoginCommand}" />
+
+                    <Button Text="Nie masz konta? Zarejestruj się →"
+                            Style="{DynamicResource LinkButton}"
+                            Command="{Binding GoToRegisterCommand}"
+                            HorizontalOptions="Start" />
+
+                    <Label Text="{Binding Error}"
+                           FontSize="12"
+                           TextColor="{DynamicResource Danger}"
+                           IsVisible="{Binding Error, Converter={StaticResource StringNotEmptyConverter}}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

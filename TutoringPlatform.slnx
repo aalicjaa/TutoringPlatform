@@ -3,4 +3,5 @@
   <Project Path="backend/TutoringPlatform.Application/TutoringPlatform.Application.csproj" Id="d87ffe30-9c22-4f79-a3f5-87a7acb53e70" />
   <Project Path="backend/TutoringPlatform.Domain/TutoringPlatform.Domain.csproj" Id="d5352687-601f-427e-9ff9-fd523e559d82" />
   <Project Path="backend/TutoringPlatform.Infrastructure/TutoringPlatform.Infrastructure.csproj" Id="d98daca4-7628-430e-bb4f-60c102a388ee" />
+  <Project Path="TutoringPlatform.Mobile/TutoringPlatform.Mobile.csproj" Id="f2c6231f-d21d-4338-ac68-2ffc5c02bd1a" />
 </Solution>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:TutoringPlatform.Mobile.Pages"
+       x:Class="TutoringPlatform.Mobile.AppShell">
+
+    <ShellContent Route="login"
+                  ContentTemplate="{DataTemplate pages:LoginPage}" />
+
+    <ShellContent Route="register"
+                  ContentTemplate="{DataTemplate pages:RegisterPage}" />
+
+    <ShellContent Route="tutor-details"
+                  ContentTemplate="{DataTemplate pages:TutorDetailsPage}" />
+
+    <TabBar Route="main">
+        <ShellContent Title="Oferty"
+                      Route="tutors"
+                      ContentTemplate="{DataTemplate pages:TutorsPage}" />
+        <ShellContent Title="Rezerwacje"
+                      Route="my-bookings"
+                      ContentTemplate="{DataTemplate pages:MyBookingsPage}" />
+    </TabBar>
+
+</Shell>

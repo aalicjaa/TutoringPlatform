@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringPlatform.Mobile.Pages.TutorDetailsPage"
+             Title="Oferta">
+
+    <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="12">
+
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+
+            <Button Text="←"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    BackgroundColor="{DynamicResource Surface}"
+                    TextColor="{DynamicResource Primary}"
+                    Clicked="OnBackClicked" />
+
+            <Label Grid.Column="1"
+                   Text="Oferta"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   TextColor="{DynamicResource TextPrimary}" />
+
+            <Border Grid.Column="2"
+                    BackgroundColor="{DynamicResource Surface}"
+                    Stroke="{DynamicResource Divider}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 14"
+                    Padding="10,8">
+                <Label Text="{Binding PriceText}"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource Primary}" />
+            </Border>
+
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="12">
+
+                <Border Stroke="{DynamicResource Divider}"
+                        StrokeThickness="1"
+                        BackgroundColor="{DynamicResource Surface}"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="16">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+
+                            <Frame WidthRequest="52"
+                                   HeightRequest="52"
+                                   CornerRadius="26"
+                                   BackgroundColor="{DynamicResource Primary}"
+                                   Padding="0"
+                                   HasShadow="False">
+
+                                <Label Text="{Binding Initials}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="18" />
+
+                            </Frame>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="2">
+
+                                <Label Text="{Binding FullName}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource TextPrimary}" />
+
+                                <Label Text="{Binding City}"
+                                       FontSize="13"
+                                       TextColor="{DynamicResource TextSecondary}" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                        <FlexLayout BindableLayout.ItemsSource="{Binding SubjectChips}"
+                                    Direction="Row"
+                                    Wrap="Wrap">
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="0,0,8,8"
+                                            BackgroundColor="{DynamicResource SecondaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 999"
+                                            Padding="10,6">
+                                        <Label Text="{Binding .}"
+                                               FontSize="12"
+                                               FontAttributes="Bold"
+                                               TextColor="{DynamicResource Primary}" />
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                        </FlexLayout>
+
+                        <Label Text="{Binding Bio}"
+                               FontSize="13"
+                               TextColor="{DynamicResource TextPrimary}"
+                               LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <CollectionView ItemsSource="{Binding Offers}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedOffer}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Stroke="{DynamicResource Divider}"
+                                    StrokeThickness="1"
+                                    BackgroundColor="{DynamicResource Surface}"
+                                    StrokeShape="RoundRectangle 14"
+                                    Padding="12"
+                                    Margin="0,0,0,8">
+
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding SubjectName}"
+                                               FontAttributes="Bold"
+                                               TextColor="{DynamicResource TextPrimary}" />
+                                        <Label Text="{Binding DurationMinutes, StringFormat='{}{0} min'}"
+                                               FontSize="12"
+                                               TextColor="{DynamicResource TextSecondary}" />
+                                        <Label Text="{Binding Mode}"
+                                               FontSize="12"
+                                               TextColor="{DynamicResource TextSecondary}" />
+                                    </VerticalStackLayout>
+
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Price, StringFormat='{}{0:0} zł'}"
+                                           FontAttributes="Bold"
+                                           TextColor="{DynamicResource Primary}"
+                                           VerticalOptions="Center" />
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Border Stroke="{DynamicResource Divider}"
+                        StrokeThickness="1"
+                        BackgroundColor="{DynamicResource Surface}"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="16">
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Dostępne terminy"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource TextPrimary}" />
+
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                            <DatePicker Date="{Binding Date}" DateSelected="OnDateSelected" />
+                            <Button Grid.Column="1"
+                                    Text="Odśwież"
+                                    Command="{Binding RefreshSlotsCommand}"
+                                    BackgroundColor="{DynamicResource Surface}"
+                                    TextColor="{DynamicResource Primary}" />
+                        </Grid>
+
+                        <Label Text="Brak dostępnych terminów dla wybranej daty."
+                               TextColor="{DynamicResource TextSecondary}"
+                               IsVisible="{Binding AvailableSlots.Count, Converter={StaticResource StringEqualsConverter}, ConverterParameter=0}" />
+
+                        <CollectionView ItemsSource="{Binding AvailableSlots}"
+                                        SelectionMode="Single"
+                                        SelectedItem="{Binding SelectedSlot}"
+                                        HeightRequest="260">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border StrokeThickness="0"
+        StrokeShape="RoundRectangle 14"
+        Padding="12"
+        Margin="0,0,0,8">
+
+                                        <Border.Triggers>
+                                            <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryLight}" />
+                                            </DataTrigger>
+                                        </Border.Triggers>
+
+                                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                            <Label Text="{Binding StartUtc, StringFormat='{}{0:HH:mm}'}"
+               FontAttributes="Bold"
+               TextColor="{DynamicResource TextPrimary}" />
+
+                                            <Label Grid.Column="1"
+               Text="{Binding EndUtc, StringFormat='{}{0:HH:mm}'}"
+               TextColor="{DynamicResource TextSecondary}"
+               VerticalOptions="Center" />
+                                        </Grid>
+
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <Button Text="Zarezerwuj"
+                                Command="{Binding ReserveCommand}"
+                                BackgroundColor="{DynamicResource Primary}"
+                                TextColor="White" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="{Binding Error}"
+                       FontSize="12"
+                       TextColor="{DynamicResource Danger}"
+                       IsVisible="{Binding Error, Converter={StaticResource StringNotEmptyConverter}}" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

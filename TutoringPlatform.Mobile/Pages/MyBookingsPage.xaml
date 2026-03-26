@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringPlatform.Mobile.Pages.MyBookingsPage"
+             Title="Moje rezerwacje">
+
+    <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="12">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="8">
+            <Label Text="{Binding Error}"
+                   TextColor="{DynamicResource Danger}"
+                   IsVisible="{Binding Error, Converter={StaticResource StringNotEmptyConverter}}" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="{DynamicResource Divider}"
+                            StrokeThickness="1"
+                            BackgroundColor="{DynamicResource Surface}"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="16"
+                            Margin="0,0,0,12">
+
+                        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="10" ColumnSpacing="12">
+
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="{Binding Date, StringFormat='{0:dddd, dd.MM.yyyy}'}"
+                                   FontAttributes="Bold"
+                                   FontSize="16"
+                                   TextColor="{DynamicResource TextPrimary}" />
+
+                            <Border Grid.Row="0" Grid.Column="1"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 999"
+                                    Padding="10,6"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="{DynamicResource Secondary}">
+                                <Label Text="{Binding Status}"
+                                       FontSize="12"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource Navy}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center" />
+                                <Border.Triggers>
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Paid">
+                                        <Setter Property="BackgroundColor" Value="#D1FAE5" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Oplacona">
+                                        <Setter Property="BackgroundColor" Value="#D1FAE5" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Opłacona">
+                                        <Setter Property="BackgroundColor" Value="#D1FAE5" />
+                                    </DataTrigger>
+
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Pending">
+                                        <Setter Property="BackgroundColor" Value="#FEF3C7" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Oczekujaca">
+                                        <Setter Property="BackgroundColor" Value="#FEF3C7" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Oczekująca">
+                                        <Setter Property="BackgroundColor" Value="#FEF3C7" />
+                                    </DataTrigger>
+
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Cancelled">
+                                        <Setter Property="BackgroundColor" Value="#FEE2E2" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="Anulowana">
+                                        <Setter Property="BackgroundColor" Value="#FEE2E2" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Border" Binding="{Binding Status}" Value="AnulowanaPrzezTutora">
+                                        <Setter Property="BackgroundColor" Value="#FEE2E2" />
+                                    </DataTrigger>
+                                </Border.Triggers>
+                            </Border>
+
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Spacing="8">
+                                <Label Text="{Binding StartTime, StringFormat='{0:HH\\:mm}'}"
+                                       TextColor="{DynamicResource TextSecondary}"
+                                       FontSize="13" />
+                                <Label Text="-"
+                                       TextColor="{DynamicResource TextSecondary}"
+                                       FontSize="13" />
+                                <Label Text="{Binding EndTime, StringFormat='{0:HH\\:mm}'}"
+                                       TextColor="{DynamicResource TextSecondary}"
+                                       FontSize="13" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="2" Spacing="12">
+                                <Button Text="Opłać"
+                                        BackgroundColor="{DynamicResource Navy}"
+                                        TextColor="White"
+                                        CornerRadius="14"
+                                        HeightRequest="44"
+                                        Padding="16,10"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.PayCommand}"
+                                        CommandParameter="{Binding}" />
+
+                                <Button Text="Anuluj"
+                                        BackgroundColor="{DynamicResource Navy}"
+                                        TextColor="White"
+                                        CornerRadius="14"
+                                        HeightRequest="44"
+                                        Padding="16,10"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CancelCommand}"
+                                        CommandParameter="{Binding}" />
+                            </HorizontalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

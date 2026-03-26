@@ -1,0 +1,165 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TutoringPlatform.Mobile.Pages.TutorsPage"
+             Title="Oferty">
+
+    <CollectionView ItemsSource="{Binding FilteredItems}"
+                    SelectionMode="Single"
+                    SelectionChanged="OnSelectionChanged"
+                    Margin="16"
+                    VerticalOptions="FillAndExpand">
+
+        <CollectionView.Header>
+            <VerticalStackLayout Spacing="12">
+
+                <Border Stroke="{DynamicResource Divider}"
+                        StrokeThickness="1"
+                        BackgroundColor="{DynamicResource Surface}"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout>
+                                <Label Text="Oferty korepetycji"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource TextPrimary}" />
+                                <Label Text="Wybierz korepetytora i przejdź do rezerwacji"
+                                       FontSize="13"
+                                       TextColor="{DynamicResource TextSecondary}" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding FilteredItems.Count, StringFormat='{}{0} wyników'}"
+                                   VerticalOptions="Center"
+                                   TextColor="{DynamicResource TextSecondary}" />
+                        </Grid>
+
+                        <Entry Placeholder="Wpisz imię, nazwisko, miasto, przedmiot."
+                               Text="{Binding Query}"
+                               ClearButtonVisibility="WhileEditing"
+                               BackgroundColor="{DynamicResource Surface}"
+                               TextColor="{DynamicResource TextPrimary}"
+                               PlaceholderColor="{DynamicResource TextSecondary}" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Picker Title="Miasto"
+                                    ItemsSource="{Binding Cities}"
+                                    SelectedItem="{Binding SelectedCity}"
+                                    BackgroundColor="{DynamicResource Surface}"
+                                    TextColor="{DynamicResource TextPrimary}" />
+
+                            <Picker Grid.Column="1"
+                                    Title="Przedmiot"
+                                    ItemsSource="{Binding Subjects}"
+                                    SelectedItem="{Binding SelectedSubject}"
+                                    BackgroundColor="{DynamicResource Surface}"
+                                    TextColor="{DynamicResource TextPrimary}" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout>
+                                <Label Text="Maksymalna cena"
+                                       TextColor="{DynamicResource TextSecondary}" />
+
+                                <Entry Placeholder="np. 150"
+                                       Text="{Binding MaxPrice, Mode=TwoWay}"
+                                       Keyboard="Numeric"
+                                       ClearButtonVisibility="WhileEditing"
+                                       BackgroundColor="{DynamicResource Surface}"
+                                       TextColor="{DynamicResource TextPrimary}"
+                                       PlaceholderColor="{DynamicResource TextSecondary}" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding MaxPriceLabel}"
+                                   VerticalOptions="End"
+                                   TextColor="{DynamicResource Primary}" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Button Text="Wyczyść"
+                                    Command="{Binding ClearFiltersCommand}"
+                                    BackgroundColor="{DynamicResource SurfaceVariant}"
+                                    TextColor="{DynamicResource TextPrimary}" />
+
+                            <Button Grid.Column="1"
+                                    Text="Odśwież"
+                                    Command="{Binding RefreshCommand}"
+                                    BackgroundColor="{DynamicResource Primary}"
+                                    TextColor="White" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="{Binding Error}"
+                       FontSize="12"
+                       TextColor="{DynamicResource Danger}"
+                       IsVisible="{Binding Error, Converter={StaticResource StringNotEmptyConverter}}" />
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}" />
+
+            </VerticalStackLayout>
+        </CollectionView.Header>
+
+        <CollectionView.EmptyView>
+            <Label Text="Brak wyników dla wybranych filtrów"
+                   TextColor="{DynamicResource TextSecondary}"
+                   Margin="0,12,0,0" />
+        </CollectionView.EmptyView>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border Stroke="{DynamicResource Divider}"
+                        StrokeThickness="1"
+                        BackgroundColor="{DynamicResource Surface}"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="12"
+                        Margin="0,6">
+
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                          ColumnSpacing="12">
+
+                        <Frame WidthRequest="44"
+                               HeightRequest="44"
+                               CornerRadius="22"
+                               BackgroundColor="{DynamicResource Primary}"
+                               Padding="0"
+                               HasShadow="False"
+                               VerticalOptions="Start">
+                            <Label Text="{Binding Initials}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="White"
+                                   FontAttributes="Bold" />
+                        </Frame>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Spacing="2">
+                            <Label Text="{Binding FullName}"
+                                   FontAttributes="Bold"
+                                   TextColor="{DynamicResource TextPrimary}" />
+                            <Label Text="{Binding SubjectCity}"
+                                   FontSize="12"
+                                   TextColor="{DynamicResource TextSecondary}" />
+                            <Label Text="{Binding PriceText}"
+                                   FontSize="12"
+                                   TextColor="{DynamicResource TextSecondary}" />
+                        </VerticalStackLayout>
+
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="22"
+                               VerticalOptions="Center"
+                               TextColor="{DynamicResource TextSecondary}" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+</ContentPage>

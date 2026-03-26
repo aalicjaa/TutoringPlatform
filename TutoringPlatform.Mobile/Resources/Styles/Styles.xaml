@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{StaticResource AppBackground}" />
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{StaticResource Accent}" />
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource Divider}" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="CornerRadius" Value="18" />
+    </Style>
+
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.BackgroundColor" Value="{StaticResource AppBackground}" />
+        <Setter Property="Shell.ForegroundColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="Shell.TitleColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Accent}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Accent}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="Shell.NavBarHasShadow" Value="False" />
+    </Style>
+
+</ResourceDictionary>

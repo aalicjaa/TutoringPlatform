@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Base palette -->
+    <Color x:Key="AppBackground">#F6F7FB</Color>
+    <Color x:Key="Surface">#FFFFFF</Color>
+    <Color x:Key="TextPrimary">#111827</Color>
+    <Color x:Key="TextSecondary">#6B7280</Color>
+    <Color x:Key="Divider">#E5E7EB</Color>
+
+    <Color x:Key="Navy">#1E3A8A</Color>
+    <Color x:Key="Accent">#1E3A8A</Color>
+
+    <Color x:Key="Danger">#DC2626</Color>
+
+    <!-- Aliases for newer pages -->
+    <Color x:Key="Background">#F6F7FB</Color>
+    <Color x:Key="Primary">#1E3A8A</Color>
+    <Color x:Key="PrimaryDark">#142A44</Color>
+    <Color x:Key="PrimaryLight">#335C8A</Color>
+
+    <Color x:Key="Secondary">#F29F05</Color>
+    <Color x:Key="SecondaryLight">#FFD166</Color>
+    <Color x:Key="SecondaryDark">#D48806</Color>
+
+    <!-- Page background -->
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{StaticResource AppBackground}" />
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <!-- Buttons -->
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Navy}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="HeightRequest" Value="48" />
+        <Setter Property="Padding" Value="14,12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="ButtonSecondary" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderColor" Value="{StaticResource Divider}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="HeightRequest" Value="48" />
+        <Setter Property="Padding" Value="14,12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="LinkButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource Navy}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <!-- Inputs -->
+    <Style x:Key="FormEntry" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="{StaticResource AppBackground}" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+    </Style>
+
+    <Style x:Key="FormPicker" TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="{StaticResource AppBackground}" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="TitleColor" Value="{StaticResource TextSecondary}" />
+    </Style>
+
+    <Style x:Key="FormDatePicker" TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <Style x:Key="FormTimePicker" TargetType="TimePicker">
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <!-- Shell -->
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.BackgroundColor" Value="{StaticResource AppBackground}" />
+        <Setter Property="Shell.ForegroundColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="Shell.TitleColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Navy}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Navy}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="Shell.NavBarHasShadow" Value="False" />
+    </Style>
+
+</ResourceDictionary>
